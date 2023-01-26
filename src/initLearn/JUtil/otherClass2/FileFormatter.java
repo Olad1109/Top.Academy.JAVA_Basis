@@ -7,11 +7,14 @@ package initLearn.JUtil.otherClass2;
     применением Formatter в виде строки шириной в 20 символов с точностью 3 знака после
     запятой, выровнять по левому краю */
 
-import java.io.*;
-import java.util.*;
-
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
 // Создаём класс FileFormatter
-public class FileFormatter {
+class FileFormatter {
     // Объявляем считыватель данных в переменную scanner
     Scanner scanner = new Scanner (System.in);
     // Создаём переменную size типа данных 32-битной точности
@@ -21,7 +24,7 @@ public class FileFormatter {
     // Объявляем тип данных 64-битной точности, с плавающей запятой,
     // в переменных: arrayValue, emptyArray
     double[] arrayValue;
-    double[] emptyArray = new double[]{0}; // добавляем начальное значение массива
+    double[] emptyArray = new double[] {0}; // добавляем начальное значение массива
     // Применяем метод main, активируя Exception, для выявления возможных исключений,
     // когда работает JVM
     public static void main (String[] args) throws Exception {
@@ -31,7 +34,7 @@ public class FileFormatter {
         fileFormatter.menuOfFileForm();
     }
     // Применяем метод menuOfFileForm(), использующий Exception
-    public void menuOfFileForm() throws Exception {
+    void menuOfFileForm() throws Exception {
         System.out.println ("Добро пожаловать в программу!\nДоступные команды:");
         System.out.println ("[exit][input][calculate][read]");
         // Создаём цикл рабочего меню
@@ -56,7 +59,7 @@ public class FileFormatter {
         }
     }
     // Применяем метод dataRecording(), где возможны исключения в работе с внешними данными
-    private void dataRecording() throws IOException {
+    void dataRecording() throws IOException {
         Scanner forInput = new Scanner (System.in);
         double RoundVal;
         System.out.println ("Укажем количество элементов массива: ");
@@ -67,7 +70,7 @@ public class FileFormatter {
         System.out.println ("Заполняем массив: ");
         // Используем целочисленное значение в переменной i, которую будем
         // использовать в качестве индекса
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i ++) {
             arrayValue[i] = forInput.nextDouble();
             // Округление до трёх цифр после запятой
             RoundVal = Math.round(arrayValue[i] * 1000) / 1000.0d;
@@ -78,7 +81,7 @@ public class FileFormatter {
         StringBuilder format2 = new StringBuilder();
         // Проверка ложных значений
         assert false;
-        for (int index = 0; index < arrayValue.length; index++) {
+        for (int index = 0; index < arrayValue.length; index ++) {
             // Создаём массив элементов типа String из arrayValue, где начальный и конечный символы
             // станут строками, символ запятой используем в качестве разделителя, по итогу цикла
             // начальный и конечный элементы удаляются
@@ -95,7 +98,7 @@ public class FileFormatter {
         String path = "src\\initLearn\\JUtil\\otherClass2\\Example.txt";
         // Создание абстрактного класса File, где конструктор создает новый экземпляр класса,
         // преобразуя указанную строку pathname в абстрактный путь.
-        File file = new File (path);
+        File file = new File(path);
         // Потребность в создании файла
         boolean NeedForANewFile;
         System.out.println ("Оценка необходимости в создании *.txt: ");
@@ -121,11 +124,11 @@ public class FileFormatter {
         writer.close(); // закрытие потока данных
     }
 
-    private void calculateOutput() {
+    void calculateOutput() {
         double sum = 0;
         double BasicSum;
         if (size > 0) {
-            // Используем ':' для присваивание значений arrayValue переменной j, имеющий тип double
+            // Используем ':' для присваивания значений arrayValue переменной j, имеющий тип double
             for (double j : arrayValue) {
                 sum = sum + j;
             }
@@ -147,10 +150,10 @@ public class FileFormatter {
         System.out.println();
     }
 
-    private void ReadAndSaveData() {
+    void ReadAndSaveData() {
         File file = new File ("src\\initLearn\\JUtil\\otherClass2\\Example.txt");
         if (!file.exists()) {
-            System.err.println("Файл отсутствует!");
+            System.err.println ("Файл отсутствует!");
             return;
         }
         // Ограничение по количеству символов в одной строке
